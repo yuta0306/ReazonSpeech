@@ -25,6 +25,12 @@ def find_end_of_segment(subwords, start):
                     break
     return idx
 
+def fix_punk_seconds(subwords):
+    for idx in range(len(subwords)):
+        subword = subwords[idx]
+        if subword.token in TOKEN_PUNC and idx > 0:
+            subwords[idx].seconds = subwords[idx - 1].seconds + SECONDS_PER_STEP
+
 def decode_hypothesis(model, hyp):
     """Decode ALSD beam search info into transcribe result
 
@@ -53,6 +59,8 @@ def decode_hypothesis(model, hyp):
         ))
     for idx in reversed(skip_indices):  # remove "_" tokens
         y_sequence.pop(idx)
+
+    fix_punk_seconds(subwords)
 
     segments = []
     start = 0
