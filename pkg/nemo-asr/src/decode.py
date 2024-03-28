@@ -21,9 +21,8 @@ def find_end_of_segment(subwords, start):
             if nex.token not in TOKEN_PUNC:
                 if cur.token in TOKEN_EOS:
                     break
-                elif idx - start >= SUBWORDS_PER_SEGMENTS:
-                    if cur.token in TOKEN_COMMA or nex.seconds - cur.seconds > PHONEMIC_BREAK:
-                        break
+                if cur.token in TOKEN_COMMA or nex.seconds - cur.seconds > PHONEMIC_BREAK:
+                    break
     return idx
 
 def decode_hypothesis(model, hyp):
