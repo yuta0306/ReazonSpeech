@@ -4,7 +4,7 @@ from .interface import Subword, Segment, TranscribeResult
 PAD_SECONDS = 0.5
 SECONDS_PER_STEP = 0.08
 SUBWORDS_PER_SEGMENTS = 10
-PHONEMIC_BREAK = 0.5
+PHONEMIC_BREAK = 0.8
 
 TOKEN_EOS = {'。', '?', '!'}
 TOKEN_COMMA = {'、', ','}
